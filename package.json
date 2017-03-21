@@ -1,0 +1,28 @@
+{
+  "name": "draw",
+  "version": "1.0.0",
+  "description": "Draw something/Guess the doodle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NolanJing/DrawSomething.git"
+  },
+  "keywords": [
+    "vue",
+    "sokect.io",
+    "drawsomething",
+    "你画我猜"
+  ],
+  "author": "Nolan Jing",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NolanJing/DrawSomething/issues"
+  },
+  "homepage": "https://github.com/NolanJing/DrawSomething#readme",
+  "devDependencies": {
+    "vue-cli": "^2.8.1"
+  }
+}

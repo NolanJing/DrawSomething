@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+    <title>Socket.IO chat</title>
+    <style>
+        #myCanvas {
+            background-color: aqua;
+        }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        function draw(pathArray) {
+            // console.log(pathArray);
+            var canvas = $("#myCanvas").get(0);
+            // 创建上下文
+            var ctx = canvas.getContext("2d");
+            var colorArray = ["black", "red", "blue", "green"];
+
+            ctx.beginPath();
+            // ctx 属性设置
+            ctx.lineWidth = 3;
+            ctx.lineCap = "round";
+            ctx.lineJoin = "round";
+            var randomNum = parseInt(Math.random() * colorArray.length);
+            var mycolor = colorArray[pathArray.color];
+            for(point of pathArray.path){
+                // console.log(point)
+                ctx.lineTo(point.x, point.y);
+                ctx.stroke();
+            }
+
+
+        }
+
+        $(function () {
+            var socket = io();
+            $('form').submit(function () {
+                socket.emit('chat message', $('#m').val());
+                $('#m').val('');
+                return false;
+            });
+            socket.on('chat message', function (msg) {
+                $('#messages').append($('<li>').text(msg));
+            });
+            socket.on('path', function (pathArray) {
+                 //
+                 draw(pathArray);
+            });
+
+            var canvas = $("#myCanvas").get(0);
+                // 创建上下文
+            var ctx = canvas.getContext("2d");
+            var colorArray = ["black", "red", "blue", "green"];
+                // 鼠标画图
+            canvas.onmousedown = function (e) {
+                // 开始画
+                ctx.beginPath();
+                // ctx 属性设置
+                ctx.lineWidth = 3;
+                ctx.lineCap = "round";
+                ctx.lineJoin = "round";
+                var randomNum = parseInt(Math.random() * colorArray.length);
+                var mycolor = colorArray[randomNum];
+                ctx.strokeStyle = mycolor;
+                // tmp 为装所有坐标点的数组
+                var tmp = [];
+                var e = e || window.event;
+                // 第一个坐标点
+                var point = {
+                    x: e.clientX - canvas.offsetLeft,
+                    y: e.clientY - canvas.offsetTop
+                }
+                ctx.moveTo(point.x, point.y);
+                tmp.push(point);
+
+                document.onmousemove = function (e) {
+                    var e = e || window.event;
+                    var point = {
+                        x: e.clientX - canvas.offsetLeft,
+                        y: e.clientY - canvas.offsetTop
+                    }
+                    ctx.lineTo(point.x, point.y);
+                    tmp.push(point);
+                    ctx.stroke();
+                };
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+
+                    // socket 发送path
+                    var pathDataDict = {
+                        path: tmp,
+                        width: 3,
+                        color: randomNum,
+                        screenW: 400
+                    }
+                    socket.emit("path", pathDataDict);
+                };
+            };
+        });
+    </script>
+</head>
+<body>
+<ul id="messages"></ul>
+<form action="">
+    <input id="m" autocomplete="off"/>
+    <button>Send</button>
+</form>
+<div class="draw">
+    <canvas id="myCanvas" width="500px" height="500px"></canvas>
+</div>
+</body>
+</html>

@@ -1,0 +1,3 @@
+fuser -n tcp 3000
+
+sudo kill pid

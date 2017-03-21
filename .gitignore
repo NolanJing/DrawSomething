@@ -1,0 +1,11 @@
+# Created by .ignore support plugin (hsz.mobi)
+/.idea
+/node_modules
+/server/node_modules/
+/server/client/
+/draw-client/.babelrc
+/draw-client/.editorconfig
+/draw-client/.eslintrc.js
+/draw-client/.eslintignore
+/draw-client/.postcssrc.js
+/draw-client/.gitignore
