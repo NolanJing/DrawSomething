@@ -1,23 +1,35 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <v-header :data="data"></v-header>
+    <v-canvas></v-canvas>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  import header from './components/header/header';
+  import canvas from './components/canvas/canvas';
+  const ERR_OK = 0;
+  export default {
+    // name: 'app'
+    data() {
+      return {
+        data: this.data
+      };
+    },
+    created() {
+      this.$http.get('/api').then((response) => {
+        response = response.body;
+        // console.log(response);
+        if (response.errno === ERR_OK) {
+          this.data = response.data;
+        }
+      });
+    },
+    components: {
+      'v-header': header,
+      'v-canvas': canvas
+    }
+  };
 </script>
-
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
