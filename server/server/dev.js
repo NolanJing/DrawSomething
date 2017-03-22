@@ -25,7 +25,7 @@ function readFileAndResponse(pathname, response) {
             response.end('page not found');
         }
         else {
-//读取成功返回相应页面信息
+           //读取成功返回相应页面信息
             response.end(data);
         }
     });
