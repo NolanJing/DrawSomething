@@ -12,6 +12,25 @@ var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
 
+
+var socket = require('socket.io');
+var fs = require('fs');
+var url = require('url');
+
+/*var io = require('socket.io').listen(server);
+
+io.on('connection', function (socket) {
+  console.log('a user connected');
+
+  socket.on('disconnect', function () {
+    console.log('user disconnected');
+  });
+  socket.on("mit_method", function (pathDataDict) {
+     console.log(pathDataDict);
+    // io.emit('path', pathDataDict);
+  });
+});*/
+
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
 // automatically open browser, if not set will be false
@@ -23,6 +42,12 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var appData = require('../data.json');
 var apiRoutes = express.Router();
+
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+io.on('connection', function (socket) {
+  console.log('新连接已创建 !');
+  });
 
 apiRoutes.get('/', function (req, res) {
   res.json({
@@ -81,7 +106,9 @@ devMiddleware.waitUntilValid(function () {
   console.log('> Listening at ' + uri + '\n')
 })
 
-module.exports = app.listen(port, function (err) {
+
+
+module.exports  = app.listen(port, function (err) {
   if (err) {
     console.log(err)
     return

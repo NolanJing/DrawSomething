@@ -5,28 +5,29 @@
     "avatar": "http://b.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=f0c5c08030d3d539c16807c70fb7c566/8ad4b31c8701a18bbef9f231982f07082838feba.jpg"
   },
   "room": {
-    "name": "来 战个痛！",
-    "playerers": [
-      {
-        "uid": "0002",
-        "userName": "刘西瓜",
-        "avatar": "http://i1.hdslb.com/bfs/face/f90a329f6484a40c84fc86e00dafc194a37bd58e.jpg@52w_52h.webp"
-      },
-      {
-        "uid": "0003",
-        "userName": "不会忘灬",
-        "avatar": "http://i0.hdslb.com/bfs/face/6420aa5a85ec1ce3ac2f28ebf8dbee4e9107df23.jpg@52w_52h.webp"
-      },
-      {
-        "uid": "0004",
-        "userName": "天依の胖次",
-        "avatar": "http://i0.hdslb.com/bfs/face/97c90a8bf7a1e4d9768064ce02c1c2d2449b1ade.jpg@52w_52h.webp"
-      },
-      {
-        "uid": "0005",
-        "userName": "三帆达人",
-        "avatar": "http://i2.hdslb.com/bfs/face/2caeb15bf5760c3583629ab2376a42a73e5725d9.jpg@52w_52h.webp"
-      }
-    ]
-  }
+    "roomId": "001",
+    "name": "来 战个痛！"
+  },
+  "players": [
+    {
+      "uid": "0002",
+      "userName": "刘西瓜",
+      "avatar": "http://i1.hdslb.com/bfs/face/f90a329f6484a40c84fc86e00dafc194a37bd58e.jpg@52w_52h.webp"
+    },
+    {
+      "uid": "0003",
+      "userName": "不会忘灬",
+      "avatar": "http://i0.hdslb.com/bfs/face/6420aa5a85ec1ce3ac2f28ebf8dbee4e9107df23.jpg@52w_52h.webp"
+    },
+    {
+      "uid": "0004",
+      "userName": "天依の胖次",
+      "avatar": "http://i0.hdslb.com/bfs/face/97c90a8bf7a1e4d9768064ce02c1c2d2449b1ade.jpg@52w_52h.webp"
+    },
+    {
+      "uid": "0005",
+      "userName": "三帆达人",
+      "avatar": "http://i2.hdslb.com/bfs/face/2caeb15bf5760c3583629ab2376a42a73e5725d9.jpg@52w_52h.webp"
+    }
+  ]
 }
