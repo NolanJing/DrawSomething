@@ -7,6 +7,8 @@ import router from './router';
 import VueResource from 'vue-resource';
 import VueSocketio from 'vue-socket.io';
 Vue.use(VueSocketio, 'http://localhost:3000/');
+// prod-env
+// Vue.use(VueSocketio, 'http://34.208.166.46:8080');
 
 Vue.use(VueResource);
 
