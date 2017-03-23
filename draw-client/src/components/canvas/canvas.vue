@@ -1,5 +1,5 @@
 <template>
-  <div class="innerDraw">
+  <div class="canvas">
     <div class="wrap">
       <canvas
         id="canvas"
@@ -22,13 +22,19 @@
   export default {
     sockets: {
       connect: function () {
+        // 建立链接后
         console.log('socket connected');
+        // console.log(document.cookie);
+        // 如果有cookie的话把
+       /* document.cookie.id = undefined;
+         if (document.cookie.id) {
+          this.$socket.emit('clientCookie', document.cookie.id);
+           console.log('clientCookie');
+         } */
       },
-      customEmit: function (data) {
-        // console.log('REFRESH');
-        // console.log(data);
-        this.$set(this.route, 'temp', data);
-        this.redraw();
+      customEmit: function (appendPathArray) {
+        // 接收画图路径更新;
+        this.redraw(appendPathArray);
       }
     },
     data () {
@@ -42,7 +48,7 @@
       };
     },
     created() {
-      this.pathArray = [];
+      this.tempPathArray = [];
     },
     mounted () {
       const canvas = document.querySelector('#canvas');
@@ -53,14 +59,16 @@
       canvasMove (e) {
         if (this.canvasMoveUse) {
           // console.log('canvasMove');
-          const t = e.target;
+          // const t = e.target;
           let canvasX;
           let canvasY;
-          canvasX = e.clientX - t.parentNode.offsetLeft;
-          canvasY = e.clientY - t.parentNode.offsetTop;
+          // canvasX = e.clientX - t.parentNode.offsetLeft;
+          // canvasY = e.clientY - t.parentNode.offsetTop;
+          canvasX = e.offsetX;
+          canvasY = e.offsetY;
           this.context.lineTo(canvasX, canvasY);
           this.context.stroke();
-          this.pathArray.push({
+          this.tempPathArray.push({
             x: canvasX,
             y: canvasY
           });
@@ -71,7 +79,8 @@
         // console.log('canvasUp');
         this.canvasMoveUse = false;
         // console.log(this.pathArray);
-        this.$socket.emit('path', this.pathArray);
+        this.$socket.emit('path', this.tempPathArray);
+        this.tempPathArray = [];
       },
       // mousedown
       canvasDown (e) {
@@ -96,8 +105,8 @@
         this.context.shadowColor = this.config.lineColor;
         this.context.strokeStyle = this.config.lineColor;
       },
-      redraw() {
-        let paintArray = this.route.temp;
+      redraw(appendPathArray) {
+        // let paintArray = this.route.temp;
         // console.log(paintArray[0]);
         const canvas = document.querySelector('#canvas');
         let context = canvas.getContext('2d');
@@ -105,24 +114,24 @@
         // let canvasX = 0;
         // let canvasY = 0;
         this.context.beginPath();
-        context.clearRect(0, 0, 600, 600);
-       for (let i = 0; i < paintArray.length - 1; i++) {
-         console.log(i);
-         context.lineTo(paintArray[i].x, paintArray[i].y);
-         context.lineTo(paintArray[i + 1].x, paintArray[i + 1].y);
-         context.stroke();
-       }
-         context.closePath();
+        // context.clearRect(0, 0, 600, 600);
+        for (let i = 0; i < appendPathArray.length - 1; i++) {
+          // console.log(i);
+          context.lineTo(appendPathArray[i].x, appendPathArray[i].y);
+          context.lineTo(appendPathArray[i + 1].x, appendPathArray[i + 1].y);
+          context.stroke();
+        }
+        context.closePath();
       }
     }
   };
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  .innerDraw
+  .canvas
     .wrap
-      padding: 0 12px 0 12px
+      // padding: 0 12px 0 12px
       width: 80%
       canvas
-        background-color: #888888
+        background-color: #505050
 </style>

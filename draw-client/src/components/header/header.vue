@@ -48,8 +48,8 @@
   .header
     // height: 300px
     // display: flex
-    padding:0 12px 0 12px
-    background-color: rgba(17, 27, 37, 0.1)
+    // padding:0 12px 0 12px
+    // background-color: rgba(17, 27, 37, 0.1)
     .roomInfo
       text-align: center
       color: red
