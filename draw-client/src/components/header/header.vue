@@ -10,7 +10,7 @@
           {{playerInfo.login.userName}}
         </div>
         <div class="avatar">
-          <img v-if="playerInfo.login.avatar" :src="playerInfo.login.avatar">
+          <img v-if="getAvatar" :src="onlineUsers[playerInfo.login.userId].avatar">
         </div>
       </div>
       <div class="players">
@@ -49,13 +49,14 @@
       this.playerInfo = {
         login: {}
       };
+      this.getAvatar = false;
       this.onlineUsers = {};
       // 当前在线人数
       this.onlineCount = 0;
       // bus总线 传递消息
       var VUEheader = this;
       bus.$on('isLogin', function (playerInfo) {
-        console.log(playerInfo.userName);
+        // console.log(playerInfo.userName);
         VUEheader.$set(VUEheader.playerInfo, 'login', playerInfo);
         // console.log(self);
       });
@@ -67,6 +68,7 @@
         console.log(update);
         this.onlineCount = update.onlineCount;
         this.onlineUsers = update.onlineUsers;
+        this.getAvatar = true;
       },
       logout: function (update) {
         console.log(`用户 <${update.leaveUser.userName}> 离开房间`);

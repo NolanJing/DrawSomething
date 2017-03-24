@@ -19,13 +19,10 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   .content
-    // padding: 0 18px 0 18px
     display: flex
     font-size: 0
     .canvas
       // flex: 1
     .chatroom
-      // font-size: 12px
       flex: 1
-      // background-color #440044
 </style>

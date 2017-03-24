@@ -2,7 +2,8 @@
   <div v-show="!(isLogin&&isConnect)" class="login">
     <div class="background">
       <div class="imgWrap"></div>
-      <img src="./canvas.png">
+      <!-- <img src="./canvas.png"> -->
+      <img src="http://i4.buimg.com/589116/78fd8d0a4cdc7b0c.png">
     </div>
     <span class="text">请输入用户名</span>
     <div class="regist">
@@ -46,8 +47,7 @@
             let id = new Date().getTime() + '' + Math.floor(Math.random() * 899 + 100);
             this.playerInfo = {
               userId: id,
-              userName: name,
-              avatar: 'https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/8ad4b31c8701a18bbef9f231982f07082838feba.jpg'
+              userName: name
             };
             //
             this.$socket.emit('login', this.playerInfo);

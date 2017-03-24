@@ -21,13 +21,13 @@
       };
     },
     created() {
-      this.$http.get('/api').then((response) => {
+      /* this.$http.get('/api').then((response) => {
         response = response.body;
         // console.log(response);
         // if (response.errno === ERR_OK) {
         this.data = response.data;
         // }
-      });
+      }); */
     },
     components: {
       'v-header': header,
