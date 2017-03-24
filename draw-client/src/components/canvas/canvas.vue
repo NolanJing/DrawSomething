@@ -16,22 +16,9 @@
     </div>
   </div>
 </template>
-
-
 <script>
   export default {
     sockets: {
-      connect: function () {
-        // 建立链接后
-        console.log('socket connected');
-        // console.log(document.cookie);
-        // 如果有cookie的话把
-       /* document.cookie.id = undefined;
-         if (document.cookie.id) {
-          this.$socket.emit('clientCookie', document.cookie.id);
-           console.log('clientCookie');
-         } */
-      },
       customEmit: function (appendPathArray) {
         // 接收画图路径更新;
         this.redraw(appendPathArray);

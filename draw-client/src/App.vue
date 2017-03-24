@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <v-header :data="data"></v-header>
+    <!--<v-header :data="data"></v-header>-->
+    <v-header></v-header>
     <v-content>
       <v-canvas></v-canvas>
       <v-chatroom></v-chatroom>
@@ -11,7 +12,6 @@
 <script>
   import header from './components/header/header';
   import content from './components/content/content';
-
   // const ERR_OK = 0;
   export default {
     // name: 'app'

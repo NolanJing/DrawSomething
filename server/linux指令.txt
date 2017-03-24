@@ -11,3 +11,6 @@ width: 80% ##神坑
 
 
 vue - socket.io 解决方法  开两个host服务器，一个8080  一个3000
+
+@isLogin="isLogin" 正确
+@isLogin="isLogin()" 取不到参数

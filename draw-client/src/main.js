@@ -31,3 +31,6 @@ new Vue({
   }, */
   components: { App }
 });
+
+/* eslint-disable no-unused-vars */
+var bus = new Vue();
