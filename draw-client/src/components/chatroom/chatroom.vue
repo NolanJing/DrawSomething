@@ -7,23 +7,26 @@
         </li>
       </ul>
     </div>
+    <div v-if="newMsg" class="newMsg">
+      <span> {{' '+ newMsg.name}}：{{newMsg.msg}}</span>
+    </div>
     <div class="sendMsg">
       <input class="input" ref="inputMsg" @keyup.enter="sendMsg">
       <button class="sendBtn" @click="sendMsg()">send</button>
     </div>
-    <v-login></v-login>
+   <!-- <v-login></v-login>-->
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import login from '../login/login.vue';
   import bus from '../../bus';
   export default {
     name: 'chatroom',
     data() {
       return {
         msgList: this.msgList,
-        playerInfo: this.playerInfo
+        playerInfo: this.playerInfo,
+        newMsg: this.newMsg
       };
     },
     created() {
@@ -44,19 +47,9 @@
         console.log('socket connected');
       }, */
       serverEmitMsg: function (msg) {
-        console.log('Msg from server:  ' + msg);
+        console.log(msg);
         this.msgList.push(msg);
-      },
-      serverInit: function (initData) {
-        // 接受来自客户端的赋值。
-        // let id = initData.playerId;
-        // document.cookie = `id=${id}`;
-        /* this.playerInfo = {
-         id: id,
-         name: `${id}号君`
-         }; */
-        // 注册名字
-        // this.$socket.emit('regist', this.playerInfo);
+        this.newMsg = msg;
       }
     },
     mounted() {
@@ -67,10 +60,6 @@
       }
     },
     methods: {
-      /* isLogin(playerInfo) {
-        this.playerInfo = playerInfo;
-        console.log('is Login');
-      }, */
       sendMsg() {
         var msg = {
             id: this.playerInfo.login.userId,
@@ -78,21 +67,54 @@
             msg: this.$refs.inputMsg.value
         };
         this.$socket.emit('clientSendMsg', msg);
+        this.$refs.inputMsg.value = '';
       }
     },
     components: {
-        'v-login': login
     }
   };
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @-webkit-keyframes 'wobble'
+    0%
+      margin-left: 10px
+      background: #ffffff
+
+    40%
+      margin-left: 150px
+      background: #b5d592
+
+    60%
+      margin-left: 10px
+      background: #b5d592
+
+    100%
+      margin-right: 50px
+      background: #007ab7
+
   .chatroom
+    position: fixed
+    bottom: 0
+    // left:0
     background-color: #888888
     font-size: 18px
+    width: 100%
+    .newMsg
+      span
+        // background: blue;
+        -webkit-animation-name:'wobble';/*动画属性名，也就是我们前面keyframes定义的动画名*/
+        -webkit-animation-duration: 10s;/*动画持续时间*/
+        -webkit-animation-timing-function: ease-in-out;
+        /*动画频率，和transition-timing-function是一样的*/
+        -webkit-animation-delay: 0s;
+        /*动画延迟时间*/
+        -webkit-animation-iteration-count: 10;
+        /*定义循环资料，infinite为无限次*/
+        -webkit-animation-direction: alternate;/*定义动画方式*/
     .msgRecord
-      height: 550px
       overflow: auto
+      display: none
       .msgList
         .msg
           padding: 5px 5px 5px 5px
@@ -107,11 +129,11 @@
       height: 40px
       .input
         flex: 1
-        margin: 10px 10px 0px 10px
+        margin: 10px 10px 10px 10px
         font-size: 20px
         text-align: center
       .sendBtn
-        margin: 10px 10px 0 0
-        width: 80px
+        margin: 10px 16px 6px 0px
+        // width: 80px
 
 </style>

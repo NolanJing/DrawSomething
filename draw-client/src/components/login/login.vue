@@ -1,15 +1,17 @@
 <template>
   <div v-show="!(isLogin&&isConnect)" class="login">
     <div class="background">
-      <div class="imgWrap"></div>
-      <!-- <img src="./canvas.png"> -->
-      <img src="http://i4.buimg.com/589116/78fd8d0a4cdc7b0c.png">
-    </div>
-    <span class="text">请输入用户名</span>
+       <img src="./canvas2.png">
+      <!--<img src="http://i4.buimg.com/589116/78fd8d0a4cdc7b0c.png">-->
+      <br>
+      <span class="text">请输入用户名</span>
     <div class="regist">
       <input class="input" ref="inputName" @keyup.enter="sendName()">
       <button class="sendBtn" @click="sendName()">进入房间</button>
+      <br>
+      <br>
     </div>
+  </div>
   </div>
 </template>
 
@@ -64,6 +66,11 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @media screen and (max-width: 980px)
+    .login
+      background-color #440044
+
+
   .login
     position: fixed // 成绝对定位的元素
     z-index: 100
@@ -71,22 +78,27 @@
     left: 0
     width: 100%
     height: 100%
+
     text-align: center
-    margin: 0 auto
     overflow: auto
     backdrop-filter: blur(10px)
     opacity: 1
     background: rgba(7, 17, 27, 1)
     .background
+      // margin: 10%
+      position: fixed // 成绝对定位的元素
+      bottom: 160px
+      margin: 10% 10% 0 10%
       img
-        width: 800px
-        height: 590px
-    .text
-      font-size: 45px
-      color: aliceblue
-      line-height: 100px
-    .regist
-      height: 40px
+        width: auto
+        max-width: 100%
+      .text
+        // font-size: 45px
+        font-size: 2rem
+        color: aliceblue
+        line-height: 100px
+      .regist
+        // height: 40px
       .input
         flex: 1
         margin: 10px 10px 0px 10px

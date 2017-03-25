@@ -10,3 +10,6 @@
 /draw-client/.postcssrc.js
 /draw-client/.gitignore
 
+/draw-client/src/components/login/canvas.png
+/draw-client/src/components/login/canvas2.png
+draw-client/src/components/login/canvas2.png

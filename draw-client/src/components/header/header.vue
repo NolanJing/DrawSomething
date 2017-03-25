@@ -2,7 +2,7 @@
   <div class="header">
     <div class="roomInfo">
       {{playerInfo.login.userName}}的房间
-      当前人数： {{onlineCount}}
+          当前人数： {{onlineCount}}
     </div>
     <div class="playersInfo">
       <div class="user">
@@ -82,14 +82,16 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   .header
-  // height: 300px
-  // display: flex
-  // padding:0 12px 0 12px
-  // background-color: rgba(17, 27, 37, 0.1)
+    position: relative
+    overflow: hidden
+    // display: flex
+    // padding:0 12px 0 12px
+    // background-color: rgba(17, 27, 37, 0.1)
     .roomInfo
       text-align: center
-      color: red
-      font-size: 24px
+      color: #007ab7
+      font-size: 20px
+      margin-bottom: 3px
     .playersInfo
       display: flex
       .user
@@ -97,20 +99,22 @@
       // padding-left: 12px
         background-color: #b5d592
         width: 160px
-        padding: 25px;
+        // padding: 25px;
         border: 1px solid #440044;
         .userName
           color: #3a33d1
         .avatar
+          display: inline-block
+          vertical-align: top
           img
-            width: 100px
-            border-radius: 50px
+            width: 64px
+            border-radius: 32px
       .players
         flex: 1
-        padding: 12px 12px 12px 12px
+        // padding: 12px 12px 12px 12px
         border: 1px solid #440044;
         text-align: center
-        line-height: 40px
+        // line-height: 40px
         background-color #fc8c84
         .player
         // float: right

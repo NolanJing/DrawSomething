@@ -3,8 +3,6 @@
     <div class="wrap">
       <canvas
         id="canvas"
-        width="800"
-        height="600"
         @mousedown="canvasDown($event)"
         @mouseup="canvasUp($event)"
         @mousemove="canvasMove($event)"
@@ -39,6 +37,8 @@
     },
     mounted () {
       const canvas = document.querySelector('#canvas');
+      canvas.width = window.innerWidth - 20;
+      canvas.height = window.innerHeight - 128;
       this.context = canvas.getContext('2d');
       this.setCanvasStyle();
     },
@@ -118,7 +118,8 @@
   .canvas
     .wrap
       // padding: 0 12px 0 12px
-      width: 80%
+      width: 100%
       canvas
         background-color: #505050
+        width: auto
 </style>

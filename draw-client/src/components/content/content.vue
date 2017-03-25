@@ -18,11 +18,5 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  .content
-    display: flex
-    font-size: 0
-    .canvas
-      // flex: 1
-    .chatroom
-      flex: 1
+
 </style>
