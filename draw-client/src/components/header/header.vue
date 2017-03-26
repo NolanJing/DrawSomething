@@ -1,21 +1,21 @@
 <template>
   <div class="header">
-    <div class="roomInfo">
-      {{playerInfo.login.userName}}的房间
+    <!--<div class="roomInfo">
+      &lt;!&ndash;// {{playerInfo.login.userName}}的房间&ndash;&gt;
           当前人数： {{onlineCount}}
-    </div>
+    </div>-->
     <div class="playersInfo">
       <div class="user">
-        <div class="userName">
-          {{playerInfo.login.userName}}
-        </div>
-        <div class="avatar">
-          <img v-if="getAvatar" :src="onlineUsers[playerInfo.login.userId].avatar">
-        </div>
+         <div class="userName">
+           {{playerInfo.login.userName}}
+         </div>
+         <div class="avatar">
+           <img v-if="getAvatar" :src="onlineUsers[playerInfo.login.userId].avatar">
+         </div>
       </div>
       <div class="players">
         <ul>
-          <li v-for="user in onlineUsers" class="player">
+          <li v-if="user.userId!==playerInfo.login.userId" v-for="user in onlineUsers" class="player">
             <div class="userName">
               {{user.userName}}
             </div>
@@ -65,7 +65,7 @@
       login: function (update) {
         // 建立链接后
         console.log(`用户 <${update.appendUser.userName}> 加入房间`);
-        console.log(update);
+        // console.log(update);
         this.onlineCount = update.onlineCount;
         this.onlineUsers = update.onlineUsers;
         this.getAvatar = true;
@@ -81,12 +81,13 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @import "../../common/stylus/mixin";
+
   .header
     position: relative
     overflow: hidden
-    // display: flex
-    // padding:0 12px 0 12px
-    // background-color: rgba(17, 27, 37, 0.1)
+    height: 60px
+    border-1px(rgb(7, 17,27, 1))
     .roomInfo
       text-align: center
       color: #007ab7
@@ -94,44 +95,44 @@
       margin-bottom: 3px
     .playersInfo
       display: flex
+      margin-top: 8px
       .user
-      // padding: 12px 12px 12px 12px
-      // padding-left: 12px
         background-color: #b5d592
-        width: 160px
-        // padding: 25px;
-        border: 1px solid #440044;
+        width: 60px
+        text-align: center
+        border: 1px solid #440044
+        padding: 2px 2px 2px 2px
         .userName
-          color: #3a33d1
+          overflow: hidden
+          white-space: nowrap
+          text-overflow: ellipsis
+          font-size: 10px
+          color: #07111b
         .avatar
-          display: inline-block
-          vertical-align: top
           img
-            width: 64px
-            border-radius: 32px
+            width: 36px
+            // max-width:40px
+            border-radius: 6px
+
       .players
         flex: 1
-        // padding: 12px 12px 12px 12px
-        border: 1px solid #440044;
-        text-align: center
-        // line-height: 40px
+        border: 1px solid #440044
+        border-left: 0
+        padding-top: 3px
         background-color #fc8c84
         .player
-        // float: right
+          padding: 2px 2px 2px 2px
+          width: 18%
           display: inline-block
           text-align: center
-
-          width: 80px
-          overflow: hidden
           .userName
-            width: 80px
+            font-size: 8px
             overflow: hidden
             white-space: nowrap
             text-overflow: ellipsis
           .avatar
+            margin-top: 2px
             img
-              width: 50px
+              width: 32px
               border-radius: 25px
-
-  // float: right
 </style>

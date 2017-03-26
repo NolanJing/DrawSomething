@@ -42,13 +42,10 @@
       });
     },
     sockets: {
-    /*  connect: function () {
-        // 建立链接后
-        console.log('socket connected');
-      }, */
       serverEmitMsg: function (msg) {
         console.log(msg);
         this.msgList.push(msg);
+        this.newMsg = undefined;
         this.newMsg = msg;
       }
     },
@@ -78,20 +75,12 @@
 <style lang="stylus" rel="stylesheet/stylus">
   @-webkit-keyframes 'wobble'
     0%
-      margin-left: 10px
-      background: #ffffff
-
-    40%
-      margin-left: 150px
-      background: #b5d592
-
-    60%
-      margin-left: 10px
-      background: #b5d592
+      margin-left: 400px
+      //background: #ffffff
 
     100%
-      margin-right: 50px
-      background: #007ab7
+      margin-left: -400px
+      //background: #007ab7
 
   .chatroom
     position: fixed
@@ -101,15 +90,21 @@
     font-size: 18px
     width: 100%
     .newMsg
+      background-color coral
+      font-size: 20px
+      line-height: 20px
+      white-space nowrap
+      // text-align: right
       span
+        color: azure
         // background: blue;
         -webkit-animation-name:'wobble';/*动画属性名，也就是我们前面keyframes定义的动画名*/
-        -webkit-animation-duration: 10s;/*动画持续时间*/
+        -webkit-animation-duration: 8s;/*动画持续时间*/
         -webkit-animation-timing-function: ease-in-out;
         /*动画频率，和transition-timing-function是一样的*/
         -webkit-animation-delay: 0s;
         /*动画延迟时间*/
-        -webkit-animation-iteration-count: 10;
+        -webkit-animation-iteration-count: 1;
         /*定义循环资料，infinite为无限次*/
         -webkit-animation-direction: alternate;/*定义动画方式*/
     .msgRecord
