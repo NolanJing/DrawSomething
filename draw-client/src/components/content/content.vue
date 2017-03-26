@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <v-canvas></v-canvas>
-    <v-chatroom></v-chatroom>
+    <!--<v-chatroom></v-chatroom>-->
   </div>
 </template>
 
@@ -18,5 +18,4 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-
 </style>

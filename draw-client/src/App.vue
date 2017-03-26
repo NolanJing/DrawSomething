@@ -43,4 +43,5 @@
   #app
     background-color: rgba(17, 27, 37, 0.1)
     padding: 0 10px 0 10px
+    user-select: none
 </style>
