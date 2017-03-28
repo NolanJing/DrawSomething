@@ -8,11 +8,15 @@ import VueResource from 'vue-resource';
 import VueSocketio from 'vue-socket.io';
 import './common/stylus/icon.styl';
 // Vue.use(VueSocketio, 'http://localhost:3000/');
-// 172.19.5.4
+
+// 无线局域网 172.26.16.181:3000
 // Vue.use(VueSocketio, 'http://172.26.16.181:3000');
-Vue.use(VueSocketio, 'http://172.19.5.4:3000');
+
+// 有线局域网
+// Vue.use(VueSocketio, 'http://172.19.5.4:3000');
+
 // prod-env
-// Vue.use(VueSocketio, 'http://52.77.197.38:3000');
+Vue.use(VueSocketio, 'http://52.77.197.38:3000');
 
 Vue.use(VueResource);
 

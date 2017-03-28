@@ -1,8 +1,8 @@
 <template>
   <div v-show="!(isLogin&&isConnect)" class="login">
     <div class="background">
-       <img src="./canvas2.png">
-      <!--<img src="http://i4.buimg.com/589116/78fd8d0a4cdc7b0c.png">-->
+      <!-- <img src="./canvas2.png">-->
+      <img src="http://i1.piimg.com/589116/acdc4b4c41584eb1s.png">
       <br>
       <span class="text">请输入用户名</span>
     <div class="regist">
@@ -78,7 +78,6 @@
     left: 0
     width: 100%
     height: 100%
-
     text-align: center
     overflow: auto
     backdrop-filter: blur(10px)
@@ -98,7 +97,7 @@
         color: aliceblue
         line-height: 100px
       .regist
-        // height: 40px
+        height: 40px
       .input
         flex: 1
         margin: 10px 10px 0px 10px
